@@ -142,7 +142,7 @@ kind: StorageClass
 metadata:
   name: local-path
 provisioner: rancher.io/local-path
-volumeBindingMode: WaitForFirstConsumer
+volumeBindingMode: Immediate
 reclaimPolicy: Delete
 
 ---
@@ -154,12 +154,7 @@ metadata:
 data:
   config.json: |-
     {
-            "nodePathMap":[
-            {
-                    "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/opt/local-path-provisioner"]
-            }
-            ]
+      "sharedFileSystemPath": "/data"
     }
   setup: |-
     #!/bin/sh
